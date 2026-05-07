@@ -1,0 +1,58 @@
+{
+  "colors": {
+    "lightMode": ["#F2ECFF", "#0D2F2C", "#48D51E"],
+    "darkMode": ["#212A3C", "#FEFFFE", "#48D51E"]
+  },
+
+  "pages": [
+    {
+      "title": "Portfolio456",
+      "description": "You are here.",
+      "link": "https://zead456.github.io/Portfolio456/",
+      "image": ""
+    },
+    {
+      "title": "Themas",
+      "description": "A page with multiple themes.",
+      "link": "https://zead456.github.io/Themas/",
+      "image": ""
+    },
+    {
+      "title": "Notes Manager",
+      "description": "A notes manager, obviously.",
+      "link": "https://zead456.github.io/Notes-Manager/",
+      "image": ""
+    }
+  ],
+
+  "quotes": [
+    {
+      "quote": "Life beats down and crushes the soul, and art reminds you that you have one.",
+      "author": "Stella Adler"
+    },
+    {
+      "quote": "Art washes away from the soul the dust of everyday life.",
+      "author": "Pablo Picasso"
+    },
+    {
+      "quote": "I found I could say things with color and shapes that I couldn't say any other way – things I had no words for.",
+      "author": "Georgia O'Keeffe"
+    },
+    {
+      "quote": "Art is not a part of life, it is not an addition to life, it is the essence of those pieces of us that make us fulfilled.",
+      "author": "Hasan Davis"
+    },
+    {
+      "quote": "Life is the art of drawing without an eraser.",
+      "author": "John W. Gardner"
+    },
+    {
+      "quote": "Art is a wound turned into light.",
+      "author": "Georges Braque"
+    },
+    {
+      "quote": "Art is not a thing; it is a way.",
+      "author": "Elbert Hubbard"
+    }
+  ]
+}
