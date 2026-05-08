@@ -5,7 +5,7 @@
   --color-sec: #FEFFFE;
   --color-ter: #48D51E;
 
-  --anim-timing: 400ms;
+  --anim-timing: 300ms;
 }
 
 *, *::before, *::after {
