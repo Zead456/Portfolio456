@@ -1,37 +1,42 @@
 const switchMode = document.getElementsByClassName("switch-mode")[0];
-const sunIcon = document.getElementsByClassName("fa-sun")[0];
 const moonIcon = document.getElementsByClassName("fa-moon")[0];
+const sunIcon = document.getElementsByClassName("fa-sun")[0];
 const rootElement = document.documentElement;
 const pagesContainer = document.getElementsByClassName("pages-container")[0];
-const leftArrow = document.getElementsByClassName("arrow-left")[0];
-const rightArrow = document.getElementsByClassName("arrow-right")[0];
-const centerPage = document.getElementsByClassName("page-center")[0];
-const leftPage = document.getElementsByClassName("page-left")[0];
-const rightPage = document.getElementsByClassName("page-right")[0];
+const selectedPage = document.getElementsByClassName("page-selected")[0];
+const prevPage = document.getElementsByClassName("page-prev")[0];
+const nextPage = document.getElementsByClassName("page-next")[0];
 const quote = document.getElementsByClassName("quote")[0];
 const author = document.getElementsByClassName("author")[0];
 
 // Extract data from the JSON file.
-let lightModeData = [];
 let darkModeData = [];
+let lightModeData = [];
 let pagesData = [];
-let selectedPageIndex = 0;
 let quotesData = [];
+
+// Load last selected page.
+let selectedPageIndex;
+if (localStorage.getItem("selectedPageIndex") === null) {
+  localStorage.setItem("selectedPageIndex", 0)
+} else {
+  selectedPageIndex = localStorage.getItem("selectedPageIndex");
+}
 
 (async () => {
   try {
     const response = await fetch('resources/data.json');
     const data = await response.json();
     
-    lightModeData = data.colors.lightMode;
     darkModeData = data.colors.darkMode;
+    lightModeData = data.colors.lightMode;
     pagesData = data.pages;
     quotesData = data.quotes;
 
     // Load the saved color mode.
     if (localStorage.getItem("darkMode") === null) {
-      localStorage.setItem("darkMode", 0);
-      moonIcon.classList.add("hidden");
+      localStorage.setItem("darkMode", 1);
+      sunIcon.classList.add("hidden");
     } else {
       if (localStorage.getItem("darkMode") == 1) {
         sunIcon.classList.add("hidden");
@@ -84,29 +89,29 @@ function setDarkMode() {
 }
 
 // Slider functionality.
-leftPage.addEventListener('click', (e) => {
+prevPage.addEventListener('click', (e) => {
   e.preventDefault();
-  centerPage.classList.add("jump");
+  selectedPage.classList.add("jump");
   setTimeout(() => {
-    centerPage.classList.remove("jump")
-    shiftToLeft();
-  }, 50);
+    selectedPage.classList.remove("jump")
+    shiftToPrev();
+  }, 100);
 });
-rightPage.addEventListener('click', (e) => {
+nextPage.addEventListener('click', (e) => {
   e.preventDefault();
-  centerPage.classList.add("jump");
+  selectedPage.classList.add("jump");
   setTimeout(() => {
-    centerPage.classList.remove("jump")
-    shiftToRight();
-  }, 50);
+    selectedPage.classList.remove("jump")
+    shiftToNext();
+  }, 100);
 });
 
-function shiftToLeft() {
+function shiftToPrev() {
   selectedPageIndex--;
   displayPages();
 }
 
-function shiftToRight() {
+function shiftToNext() {
   selectedPageIndex++;
   displayPages();
 }
@@ -122,36 +127,37 @@ function displayPages() {
       selectedPageIndex = 0;
     }
   
-    let leftPageIndex = selectedPageIndex - 1;
-    let rightPageIndex = selectedPageIndex + 1;
+    localStorage.setItem("selectedPageIndex", selectedPageIndex);
+    let prevPageIndex = Number(selectedPageIndex) - 1;
+    let nextPageIndex = Number(selectedPageIndex) + 1;
 
-    if (leftPageIndex < 0) {
-      leftPageIndex = pagesData.length - 1;
-    } else if (leftPageIndex >= pagesData.length) {
-      leftPageIndex = 0;
+    if (prevPageIndex < 0) {
+      prevPageIndex = pagesData.length - 1;
+    } else if (prevPageIndex >= pagesData.length) {
+      prevPageIndex = 0;
     }
 
-    if (rightPageIndex < 0) {
-      rightPageIndex = pagesData.length - 1;
-    } else if (rightPageIndex >= pagesData.length) {
-      rightPageIndex = 0;
+    if (nextPageIndex < 0) {
+      nextPageIndex = pagesData.length - 1;
+    } else if (nextPageIndex >= pagesData.length) {
+      nextPageIndex = 0;
     }
   
     // Display pages data according to the calculated indexes.
-    centerPage.getElementsByTagName("h3")[0].innerText = pagesData[selectedPageIndex].title;
-    centerPage.getElementsByTagName("p")[0].innerText = pagesData[selectedPageIndex].description;
-    centerPage.href = pagesData[selectedPageIndex].link;
-    centerPage.style.backgroundImage = pagesData[selectedPageIndex].image;
+    selectedPage.getElementsByTagName("h3")[0].innerText = pagesData[selectedPageIndex].title;
+    selectedPage.getElementsByTagName("p")[0].innerText = pagesData[selectedPageIndex].description;
+    selectedPage.href = pagesData[selectedPageIndex].link;
+    selectedPage.style.backgroundImage = pagesData[selectedPageIndex].image;
 
-    leftPage.getElementsByTagName("h3")[0].innerText = pagesData[leftPageIndex].title;
-    leftPage.getElementsByTagName("p")[0].innerText = pagesData[leftPageIndex].description;
-    leftPage.href = pagesData[leftPageIndex].link;
-    leftPage.style.backgroundImage = pagesData[leftPageIndex].image;
+    prevPage.getElementsByTagName("h3")[0].innerText = pagesData[prevPageIndex].title;
+    prevPage.getElementsByTagName("p")[0].innerText = pagesData[prevPageIndex].description;
+    prevPage.href = pagesData[prevPageIndex].link;
+    prevPage.style.backgroundImage = pagesData[prevPageIndex].image;
 
-    rightPage.getElementsByTagName("h3")[0].innerText = pagesData[rightPageIndex].title;
-    rightPage.getElementsByTagName("p")[0].innerText = pagesData[rightPageIndex].description;
-    rightPage.href = pagesData[rightPageIndex].link;
-    rightPage.style.backgroundImage = pagesData[rightPageIndex].image;
+    nextPage.getElementsByTagName("h3")[0].innerText = pagesData[nextPageIndex].title;
+    nextPage.getElementsByTagName("p")[0].innerText = pagesData[nextPageIndex].description;
+    nextPage.href = pagesData[nextPageIndex].link;
+    nextPage.style.backgroundImage = pagesData[nextPageIndex].image;
   }
 }
 
@@ -168,8 +174,8 @@ document.addEventListener('mousemove', (e) => {
   // Calculate offset for use with the selected page.
   const offsetX = ((x - middleX) / middleX) * 20;
   const offsetY = ((y - middleY) / middleY) * 20;
-  centerPage.style.setProperty("--rotateX", -offsetY + "deg");
-  centerPage.style.setProperty("--rotateY", offsetX + "deg");
+  selectedPage.style.setProperty("--rotateX", -offsetY + "deg");
+  selectedPage.style.setProperty("--rotateY", offsetX + "deg");
 
   // Calculate offset for use with the body element.
   const bodyOffsetX = ((x - middleX) / middleX) * 5;
@@ -179,12 +185,12 @@ document.addEventListener('mousemove', (e) => {
 });
 
 // Add expanding animation for the selected page's shadow when a page is opened.
-centerPage.style.setProperty("--inset", -1 + "rem");
-centerPage.addEventListener('click', (e) => {
+selectedPage.style.setProperty("--inset", -1 + "rem");
+selectedPage.addEventListener('click', (e) => {
   e.preventDefault();
-  centerPage.style.setProperty("--inset", -200 + "rem");
+  selectedPage.style.setProperty("--inset", -200 + "rem");
   setTimeout(() => {
-    centerPage.style.setProperty("--inset", -1 + "rem");
-    window.open(centerPage.href);
+    selectedPage.style.setProperty("--inset", -1 + "rem");
+    window.open(selectedPage.href);
   }, 300);
 });
