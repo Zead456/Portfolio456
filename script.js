@@ -7,7 +7,7 @@ const selectedPage = document.getElementsByClassName("page-selected")[0];
 const prevPage = document.getElementsByClassName("page-prev")[0];
 const nextPage = document.getElementsByClassName("page-next")[0];
 const quote = document.getElementsByClassName("quote")[0];
-const author = document.getElementsByClassName("author")[0];
+const author = document.getElementsByClassName("authorr")[0];
 
 // Extract data from the JSON file.
 let darkModeData = [];
