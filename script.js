@@ -18,7 +18,7 @@ let quotesData = [];
 // Load last selected page.
 let selectedPageIndex = 0;
 if (localStorage.getItem("selectedPageIndex") === null) {
-  localStorage.setItem("selectedPageIndex", selectedPageIndex)
+  localStorage.setItem("selectedPageIndex", selectedPageIndex);
 } else {
   selectedPageIndex = localStorage.getItem("selectedPageIndex");
 }
