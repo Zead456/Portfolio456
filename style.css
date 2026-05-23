@@ -253,6 +253,8 @@ nav {
 .page-selected > p {
   font-size: 0.8rem;
   font-weight: 300;
+  color: var(--color-sec);
+  background-color: var(--color-pri);
   padding: 0.3em;
   border-radius: 3px;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.5);
