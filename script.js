@@ -147,17 +147,17 @@ function displayPages() {
     selectedPage.getElementsByTagName("h3")[0].innerText = pagesData[selectedPageIndex].title;
     selectedPage.getElementsByTagName("p")[0].innerText = pagesData[selectedPageIndex].description;
     selectedPage.href = pagesData[selectedPageIndex].link;
-    selectedPage.style.backgroundImage = pagesData[selectedPageIndex].image;
+    selectedPage.style.backgroundImage = `url(${pagesData[selectedPageIndex].image})`;
 
     prevPage.getElementsByTagName("h3")[0].innerText = pagesData[prevPageIndex].title;
     prevPage.getElementsByTagName("p")[0].innerText = pagesData[prevPageIndex].description;
     prevPage.href = pagesData[prevPageIndex].link;
-    prevPage.style.backgroundImage = pagesData[prevPageIndex].image;
+    prevPage.style.backgroundImage = `url(${pagesData[prevPageIndex].image})`;
 
     nextPage.getElementsByTagName("h3")[0].innerText = pagesData[nextPageIndex].title;
     nextPage.getElementsByTagName("p")[0].innerText = pagesData[nextPageIndex].description;
     nextPage.href = pagesData[nextPageIndex].link;
-    nextPage.style.backgroundImage = pagesData[nextPageIndex].image;
+    nextPage.style.backgroundImage = `url(${pagesData[nextPageIndex].image})`;
   }
 }
 
