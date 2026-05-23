@@ -9,19 +9,19 @@
       "title": "Portfolio456",
       "description": "You are here.",
       "link": "https://zead456.github.io/Portfolio456/",
-      "image": ""
+      "image": "./portfolio456_ss.png"
     },
     {
       "title": "Themas",
       "description": "A page with multiple themes.",
       "link": "https://zead456.github.io/Themas/",
-      "image": ""
+      "image": "./themas_ss.png"
     },
     {
       "title": "Notes Manager",
       "description": "A notes manager, obviously.",
       "link": "https://zead456.github.io/Notes-Manager/",
-      "image": ""
+      "image": "./notes-manager_ss.png"
     }
   ],
 
