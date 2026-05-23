@@ -15,13 +15,13 @@
       "title": "Themas",
       "description": "A page with multiple themes.",
       "link": "https://zead456.github.io/Themas/",
-      "image": "resources//themas_ss.png"
+      "image": "resources/themas_ss.png"
     },
     {
       "title": "Notes Manager",
       "description": "A notes manager, obviously.",
       "link": "https://zead456.github.io/Notes-Manager/",
-      "image": "resources//notes-manager_ss.png"
+      "image": "resources/notes-manager_ss.png"
     }
   ],
 
